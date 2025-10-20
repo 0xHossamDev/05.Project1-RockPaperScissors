@@ -187,12 +187,17 @@ stGameInfo playGame(int numberOfRounds) {
 
 }
 
+void resetScreen() {
+    system("cls");
+}
+
 void startGame() {
 
     char playAgain = 'Y';
 
     do {
-        
+
+        resetScreen();
         stGameInfo gameInfo;
         gameInfo = playGame(readPositiveNumber("How many Rounds 1 to 10 ?", 1, 10));
         displayGameResult(gameInfo);
