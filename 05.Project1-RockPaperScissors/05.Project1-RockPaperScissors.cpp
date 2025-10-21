@@ -44,7 +44,7 @@ int getRandomNumber(int from, int to) {
 enChoice readPlayerChoice() {
     int number = 0;
     do {
-        cout << "Your Choice: [1] : Stone, [2]: Paper, [3] : Scissors ? ";
+        cout << "Your Choice: [1] : Rock, [2]: Paper, [3] : Scissors ? ";
         cin >> number;
     } while (!isNumberInRange(number, 1, 3));
     return (enChoice)number;
@@ -144,14 +144,14 @@ string printTabs(short numberOfTabs) {
 }
 
 void displayGameResult(stGameInfo gameInfo) {
-    cout << endl << endl;
-    cout << printTabs(2) << "_______________ [Game Result ] _______________" << endl << endl;
+    cout << endl;
+    cout << printTabs(2) << "_______________ [Game Result ] ___________________" << endl << endl;
     cout << printTabs(2)  << "Game Rounds           : " << gameInfo.numberOfRounds << endl;
     cout << printTabs(2)  << "Player 1 Won Times    : " << gameInfo.player1WonTimes << endl;
     cout << printTabs(2)  << "Computer Won Times    : " << gameInfo.computerWonTimes << endl;
     cout << printTabs(2)  << "Draw Times            : " << gameInfo.drawTimes << endl;
     cout << printTabs(2)  << "Final Winner          : " << gameInfo.finalWinnerName << endl;
-    cout << printTabs(2)  << "______________________________________________" << endl;
+    cout << printTabs(2)  << "__________________________________________________" << endl;
 }
 
 stGameInfo playGame(int numberOfRounds) {
@@ -191,6 +191,13 @@ void resetScreen() {
     system("cls");
 }
 
+void displayGameOverScreen() {
+    cout << printTabs(2) << "\n";
+    cout << printTabs(2) << "--------------------------------------------------\n\n";
+    cout << printTabs(2) << "               +++  G a m e  O v e r  +++         \n\n";
+    cout << printTabs(2) << "--------------------------------------------------\n";
+}
+
 void startGame() {
 
     char playAgain = 'Y';
@@ -200,6 +207,7 @@ void startGame() {
         resetScreen();
         stGameInfo gameInfo;
         gameInfo = playGame(readPositiveNumber("How many Rounds 1 to 10 ?", 1, 10));
+        displayGameOverScreen();
         displayGameResult(gameInfo);
 
         cout << endl;
