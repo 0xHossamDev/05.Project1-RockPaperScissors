@@ -143,6 +143,21 @@ string printTabs(short numberOfTabs) {
     return tab;
 }
 
+void changeDisplayColor(enWinner winner) {
+    switch (winner) {
+    case enWinner::Player1:
+        system("color 2F");
+        break;
+    case enWinner::Computer:
+        cout << "\a";
+        system("color 4F");
+        break;
+    case enWinner::Draw:
+        system("color 6F");
+        break;
+    }
+}
+
 void displayGameResult(stGameInfo gameInfo) {
     cout << endl;
     cout << printTabs(2) << "_______________ [Game Result ] ___________________" << endl << endl;
@@ -152,6 +167,7 @@ void displayGameResult(stGameInfo gameInfo) {
     cout << printTabs(2)  << "Draw Times            : " << gameInfo.drawTimes << endl;
     cout << printTabs(2)  << "Final Winner          : " << gameInfo.finalWinnerName << endl;
     cout << printTabs(2)  << "__________________________________________________" << endl;
+    changeDisplayColor(gameInfo.finalWinner);
 }
 
 stGameInfo playGame(int numberOfRounds) {
@@ -167,6 +183,7 @@ stGameInfo playGame(int numberOfRounds) {
         roundInfo.roundWinner = getRoundWinner(roundInfo);
         roundInfo.roundWinnerName = convertWinnerToString(roundInfo.roundWinner);
 
+        changeDisplayColor(roundInfo.roundWinner);
 
         displayRoundInfo(roundInfo);
 
@@ -189,7 +206,10 @@ stGameInfo playGame(int numberOfRounds) {
 
 void resetScreen() {
     system("cls");
+    system("color 0F");
 }
+
+
 
 void displayGameOverScreen() {
     cout << printTabs(2) << "\n";
