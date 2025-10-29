@@ -32,6 +32,14 @@ int readPositiveNumber(string msg, int from, int to) {
     do {
         cout << msg << " ";
         cin >> number;
+
+        while (cin.fail()) {
+			cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cout << "Invalid Number, Enter a valid one:" << " ";
+            cin >> number;
+        }
+
     } while (!isNumberInRange(number, from, to));
     return number;
 }
